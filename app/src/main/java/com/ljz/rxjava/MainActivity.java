@@ -16,6 +16,7 @@ import java.util.List;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //订阅
         observable1.subscribe(observer);
     }
-    
+
     private void testRxSubscriber() {
         Subscriber<String> subscriber = new Subscriber<String>() {
             @Override
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Observable observable2 = Observable.just("Hello2", "World2");
 
-        String [] words = {"Hello3", "World3"};
+        String[] words = {"Hello3", "World3"};
         Observable observable3 = Observable.from(words);
 
         List<String> list = new ArrayList<String>();
@@ -223,12 +224,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void testRxAction() {
 
-        Observable.just("Hello action", "World action").subscribe(new Action1<String>() {
+//        Observable.just("Hello action", "World action").subscribe(new Action1<String>() {
+//            @Override
+//            public void call(String s) {
+//                Log.d(TAG, "testRxSubscriber, call s: " + s);
+//                ToastUtil.toast(mContext, "testRxAction, call " + s);
+//            }
+//        });
+
+        Observable observable = Observable.just("Hello action", "World action");
+        //处理onNext()中的内容
+        Action1<String> onNextAction = new Action1<String>() {
             @Override
             public void call(String s) {
-                Log.d(TAG, "testRxSubscriber, call s: " + s);
-                ToastUtil.toast(mContext, "testRxAction, call " + s);
+                Log.i(TAG, s);
+                ToastUtil.toast(mContext, "testRxAction, onNextAction call " + s);
             }
-        });
+        };
+        //处理onError()中的内容
+        Action1<Throwable> onErrorAction = new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                ToastUtil.toast(mContext, "testRxAction, onErrorAction");
+            }
+        };
+        //处理onCompleted()中的内容
+        Action0 onCompletedAction = new Action0() {
+            @Override
+            public void call() {
+                Log.i(TAG, "Completed");
+                ToastUtil.toast(mContext, "testRxAction, Completed");
+
+            }
+        };
+
+        //使用 onNextAction 来定义 onNext()
+        observable.subscribe(onNextAction);
+        //使用 onNextAction 和 onErrorAction 来定义 onNext() 和 onError()
+        observable.subscribe(onNextAction, onErrorAction);
+        //使用 onNextAction、 onErrorAction 和 onCompletedAction 来定义 onNext()、 onError() 和 onCompleted()
+        observable.subscribe(onNextAction, onErrorAction, onCompletedAction);
     }
 }
