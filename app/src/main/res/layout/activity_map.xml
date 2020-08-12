@@ -10,52 +10,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="RxJava的用法汇总"
+        android:text="RxJava的Map用法"
          />
 
     <Button
-        android:id="@+id/simple_btn"
+        android:id="@+id/test_map1"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:text="RxJava的简单用法"
+        android:text="testRxMap1"
         />
 
     <Button
-        android:id="@+id/map_btn"
+        android:id="@+id/test_map2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:text="RxJava的Map用法"
+        android:text="多次调用Map"
         />
 
     <Button
-        android:id="@+id/test_justfrom"
+        android:id="@+id/test_map3"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:text="RxJava的用法1"
+        android:text="复杂情况下调用Map"
         />
 
     <Button
-        android:id="@+id/test_simple"
+        android:id="@+id/test_flatmap"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:text="RxJava的用法2"
-        />
-
-    <Button
-        android:id="@+id/test_action"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:text="RxJava的用法3"
+        android:text="flatmap 用法"
         />
 
 </LinearLayout>
