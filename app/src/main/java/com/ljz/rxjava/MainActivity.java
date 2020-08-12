@@ -1,9 +1,14 @@
 package com.ljz.rxjava;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.ljz.rxjava.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +16,59 @@ import java.util.List;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.functions.Action1;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private Context mContext;
+    private Button observerBtn;
+    private Button subscriberBtn;
+    private Button justfromBtn;
+    private Button simpleBtn;
+    private Button actionBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        testRxObserver();
-//        testRxSubscriber();
-        testRxJustFrom();
+        mContext = this;
+
+        observerBtn = findViewById(R.id.test_observer);
+        observerBtn.setOnClickListener(this);
+        subscriberBtn = findViewById(R.id.test_subscriber);
+        subscriberBtn.setOnClickListener(this);
+        justfromBtn = findViewById(R.id.test_justfrom);
+        justfromBtn.setOnClickListener(this);
+        simpleBtn = findViewById(R.id.test_simple);
+        simpleBtn.setOnClickListener(this);
+        actionBtn = findViewById(R.id.test_action);
+        actionBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.test_observer:
+                testRxObserver();
+                break;
+            case R.id.test_subscriber:
+                testRxSubscriber();
+                break;
+            case R.id.test_justfrom:
+                testRxJustFrom();
+                break;
+            case R.id.test_simple:
+                testRxSimple();
+                break;
+            case R.id.test_action:
+                testRxAction();
+                break;
+            default:
+                break;
+        }
     }
 
     private void testRxObserver() {
@@ -32,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCompleted() {
                 Log.i(TAG, "testRxObserver, Completed");
+                ToastUtil.toast(mContext, "testRxObserver, onCompleted");
             }
 
             @Override
@@ -42,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(String s) {
                 Log.i(TAG, "testRxObserver,  s = " + s);
+                ToastUtil.toast(mContext, "testRxObserver, onNext " + s);
             }
         };
         //使用Observable.create()创建被观察者
@@ -67,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(String s) {
                 Log.d(TAG, "testRxSubscriber, Item: " + s);
+                ToastUtil.toast(mContext, "testRxSubscriber, onNext " + s);
             }
 
             @Override
@@ -98,22 +147,23 @@ public class MainActivity extends AppCompatActivity {
         Subscriber<String> subscriber = new Subscriber<String>() {
             @Override
             public void onStart() {
-                Log.d(TAG, "testRxSubscriber, onStart: ");
+                Log.d(TAG, "testRxJustFrom, onStart: ");
             }
 
             @Override
             public void onNext(String s) {
-                Log.d(TAG, "testRxSubscriber, Item: " + s);
+                Log.d(TAG, "testRxJustFrom, onNext Item: " + s);
+                ToastUtil.toast(mContext, "testRxJustFrom, onNext " + s);
             }
 
             @Override
             public void onCompleted() {
-                Log.d(TAG, "testRxSubscriber, Completed!");
+                Log.d(TAG, "testRxJustFrom, Completed!");
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d(TAG, "testRxSubscriber, Error!");
+                Log.d(TAG, "testRxJustFrom, Error!");
             }
         };
 
@@ -143,5 +193,42 @@ public class MainActivity extends AppCompatActivity {
 //        observable3.subscribe(subscriber);
         observable4.subscribe(subscriber);
 //        subscriber.unsubscribe();
+    }
+
+    private void testRxSimple() {
+
+        Observable.just("Hello simple", "World simple").subscribe(new Subscriber<String>() {
+            @Override
+            public void onStart() {
+                Log.d(TAG, "testRxSimple, onStart: ");
+            }
+
+            @Override
+            public void onNext(String s) {
+                Log.d(TAG, "testRxSimple, onNext Item: " + s);
+                ToastUtil.toast(mContext, "testRxSimple, onNext " + s);
+            }
+
+            @Override
+            public void onCompleted() {
+                Log.d(TAG, "testRxSimple, Completed!");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "testRxSimple, Error!");
+            }
+        });
+    }
+
+    private void testRxAction() {
+
+        Observable.just("Hello action", "World action").subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                Log.d(TAG, "testRxSubscriber, call s: " + s);
+                ToastUtil.toast(mContext, "testRxAction, call " + s);
+            }
+        });
     }
 }
