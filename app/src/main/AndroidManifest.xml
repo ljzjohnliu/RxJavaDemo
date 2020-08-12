@@ -19,6 +19,7 @@
 
         <activity android:name=".TestRxSimpleActivity" />
         <activity android:name=".TestRxMapActivity" />
+        <activity android:name=".SchedulerActivity" />
     </application>
 
 </manifest>

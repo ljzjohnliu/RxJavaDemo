@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Context mContext;
     private Button simpleBtn;
     private Button mapBtn;
-    private Button justfromBtn;
+    private Button schedulerBtn;
     private Button simple22Btn;
     private Button actionBtn;
 
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         simpleBtn.setOnClickListener(this);
         mapBtn = findViewById(R.id.map_btn);
         mapBtn.setOnClickListener(this);
-        justfromBtn = findViewById(R.id.test_justfrom);
-        justfromBtn.setOnClickListener(this);
+        schedulerBtn = findViewById(R.id.scheduler_btn);
+        schedulerBtn.setOnClickListener(this);
         simple22Btn = findViewById(R.id.test_simple);
         simple22Btn.setOnClickListener(this);
         actionBtn = findViewById(R.id.test_action);
@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.map_btn:
                 intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.TestRxMapActivity"));
                 break;
-//            case R.id.test_justfrom:
-//                break;
+            case R.id.scheduler_btn:
+                intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.SchedulerActivity"));
+                break;
 //            case R.id.test_simple:
 //                break;
 //            case R.id.test_action:

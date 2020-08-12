@@ -138,6 +138,9 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
+    /**
+     * 使用flatmap是不保证排序的
+     */
     private void testRxFlatmap() {
         Observable.from(getStudents())
                 .flatMap(new Func1<Student, Observable<Course>>() {
@@ -154,6 +157,9 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
                 });
     }
 
+    /**
+     * 要保证顺的的话，可以使用concatMap
+     */
     private void testRxConcatMap() {
         Observable.from(getStudents())
                 .concatMap(new Func1<Student, Observable<Course>>() {
