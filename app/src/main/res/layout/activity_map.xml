@@ -49,4 +49,13 @@
         android:text="flatmap 用法"
         />
 
+    <Button
+        android:id="@+id/test_concatmap"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"
+        android:text="concatmap 用法"
+        />
+
 </LinearLayout>

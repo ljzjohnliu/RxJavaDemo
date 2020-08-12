@@ -26,6 +26,7 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
     private Button map2Btn;
     private Button map3Btn;
     private Button flatmapBtn;
+    private Button concatmapBtn;
 
 
     @Override
@@ -42,6 +43,8 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
         map3Btn.setOnClickListener(this);
         flatmapBtn = findViewById(R.id.test_flatmap);
         flatmapBtn.setOnClickListener(this);
+        concatmapBtn = findViewById(R.id.test_concatmap);
+        concatmapBtn.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +62,9 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.test_flatmap:
                 testRxFlatmap();
+                break;
+            case R.id.test_concatmap:
+                testRxConcatMap();
                 break;
             default:
                 break;
@@ -135,6 +141,22 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
     private void testRxFlatmap() {
         Observable.from(getStudents())
                 .flatMap(new Func1<Student, Observable<Course>>() {
+                    @Override
+                    public Observable<Course> call(Student student) {
+                        return Observable.from(student.getCoursesList());
+                    }
+                })
+                .subscribe(new Action1<Course>() {
+                    @Override
+                    public void call(Course course) {
+                        Log.d(TAG, "testRxFlatMap, call: courses name = " + course.getName());
+                    }
+                });
+    }
+
+    private void testRxConcatMap() {
+        Observable.from(getStudents())
+                .concatMap(new Func1<Student, Observable<Course>>() {
                     @Override
                     public Observable<Course> call(Student student) {
                         return Observable.from(student.getCoursesList());
