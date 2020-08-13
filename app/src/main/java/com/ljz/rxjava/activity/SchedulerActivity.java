@@ -1,13 +1,14 @@
-package com.ljz.rxjava;
+package com.ljz.rxjava.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ljz.rxjava.R;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

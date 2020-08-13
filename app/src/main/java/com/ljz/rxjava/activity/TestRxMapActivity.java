@@ -1,4 +1,4 @@
-package com.ljz.rxjava;
+package com.ljz.rxjava.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ljz.rxjava.R;
 import com.ljz.rxjava.data.Course;
 import com.ljz.rxjava.data.Student;
 
