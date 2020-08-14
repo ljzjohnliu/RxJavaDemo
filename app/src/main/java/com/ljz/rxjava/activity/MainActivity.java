@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button simpleBtn;
     private Button mapBtn;
     private Button schedulerBtn;
-    private Button simple22Btn;
+    private Button retrofitBtn;
     private Button actionBtn;
 
 
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mapBtn.setOnClickListener(this);
         schedulerBtn = findViewById(R.id.scheduler_btn);
         schedulerBtn.setOnClickListener(this);
-        simple22Btn = findViewById(R.id.test_simple);
-        simple22Btn.setOnClickListener(this);
+        retrofitBtn = findViewById(R.id.retrofit_btn);
+        retrofitBtn.setOnClickListener(this);
         actionBtn = findViewById(R.id.test_action);
         actionBtn.setOnClickListener(this);
     }
@@ -55,8 +55,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.scheduler_btn:
                 intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.activity.SchedulerActivity"));
                 break;
-//            case R.id.test_simple:
-//                break;
+            case R.id.retrofit_btn:
+                intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.activity.RetrofitActivity"));
+                break;
 //            case R.id.test_action:
 //                break;
             default:
