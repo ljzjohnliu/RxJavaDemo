@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -14,10 +18,32 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        config {
+            storeFile file('./keystore.jks')
+            keyPassword '123456'
+            storePassword '123456'
+            keyAlias 'key0'
+        }
+    }
+
     buildTypes {
-        release {
+        debug {
+            buildConfigField("boolean", "LOG_DEBUG", "true")
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        release {
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "OTADemo_${defaultConfig.versionName}_${releaseTime()}.apk"
+            }
         }
     }
 

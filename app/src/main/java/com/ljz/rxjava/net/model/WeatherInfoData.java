@@ -2,8 +2,6 @@ package com.ljz.rxjava.net.model;
 
 import android.util.Log;
 
-import com.ljz.rxjava.utils.ToastUtil;
-
 
     /*{
         "weatherinfo":{
