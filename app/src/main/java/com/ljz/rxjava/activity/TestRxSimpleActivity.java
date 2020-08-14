@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,11 +23,6 @@ public class TestRxSimpleActivity extends AppCompatActivity implements View.OnCl
 
     private static final String TAG = TestRxSimpleActivity.class.getSimpleName();
     private Context mContext;
-    private Button observerBtn;
-    private Button subscriberBtn;
-    private Button justfromBtn;
-    private Button simpleBtn;
-    private Button actionBtn;
 
 
     @Override
@@ -37,16 +31,11 @@ public class TestRxSimpleActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_simple);
         mContext = this;
 
-        observerBtn = findViewById(R.id.test_observer);
-        observerBtn.setOnClickListener(this);
-        subscriberBtn = findViewById(R.id.test_subscriber);
-        subscriberBtn.setOnClickListener(this);
-        justfromBtn = findViewById(R.id.test_justfrom);
-        justfromBtn.setOnClickListener(this);
-        simpleBtn = findViewById(R.id.test_simple);
-        simpleBtn.setOnClickListener(this);
-        actionBtn = findViewById(R.id.test_action);
-        actionBtn.setOnClickListener(this);
+        findViewById(R.id.test_observer).setOnClickListener(this);
+        findViewById(R.id.test_subscriber).setOnClickListener(this);
+        findViewById(R.id.test_justfrom).setOnClickListener(this);
+        findViewById(R.id.test_simple).setOnClickListener(this);
+        findViewById(R.id.test_action).setOnClickListener(this);
     }
 
     @Override

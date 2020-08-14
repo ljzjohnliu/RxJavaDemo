@@ -23,8 +23,6 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
 
     private static final String TAG = SchedulerActivity.class.getSimpleName();
     private Context mContext;
-    private Button scheduler1Btn;
-    private Button scheduler2Btn;
 
     private void printPid(String from) {
 //        Log.d(TAG, from + " printPid, 获取应用主线程ID: " + Looper.getMainLooper().getThread().getId());
@@ -41,10 +39,8 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
         mContext = this;
         printPid("onCreate");
 
-        scheduler1Btn = findViewById(R.id.test_scheduler1);
-        scheduler1Btn.setOnClickListener(this);
-        scheduler2Btn = findViewById(R.id.test_scheduler2);
-        scheduler2Btn.setOnClickListener(this);
+        findViewById(R.id.test_scheduler1).setOnClickListener(this);
+        findViewById(R.id.test_scheduler2).setOnClickListener(this);
     }
 
     @Override

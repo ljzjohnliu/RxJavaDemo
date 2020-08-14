@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,11 +22,6 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
 
     private static final String TAG = TestRxMapActivity.class.getSimpleName();
     private Context mContext;
-    private Button map1Btn;
-    private Button map2Btn;
-    private Button map3Btn;
-    private Button flatmapBtn;
-    private Button concatmapBtn;
 
 
     @Override
@@ -36,16 +30,11 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_map);
         mContext = this;
 
-        map1Btn = findViewById(R.id.test_map1);
-        map1Btn.setOnClickListener(this);
-        map2Btn = findViewById(R.id.test_map2);
-        map2Btn.setOnClickListener(this);
-        map3Btn = findViewById(R.id.test_map3);
-        map3Btn.setOnClickListener(this);
-        flatmapBtn = findViewById(R.id.test_flatmap);
-        flatmapBtn.setOnClickListener(this);
-        concatmapBtn = findViewById(R.id.test_concatmap);
-        concatmapBtn.setOnClickListener(this);
+        findViewById(R.id.test_map1).setOnClickListener(this);
+        findViewById(R.id.test_map2).setOnClickListener(this);
+        findViewById(R.id.test_map3).setOnClickListener(this);
+        findViewById(R.id.test_flatmap).setOnClickListener(this);
+        findViewById(R.id.test_concatmap).setOnClickListener(this);
     }
 
     @Override

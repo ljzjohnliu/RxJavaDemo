@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,11 +15,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Context mContext;
-    private Button simpleBtn;
-    private Button mapBtn;
-    private Button schedulerBtn;
-    private Button retrofitBtn;
-    private Button actionBtn;
 
 
     @Override
@@ -29,16 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mContext = this;
 
-        simpleBtn = findViewById(R.id.simple_btn);
-        simpleBtn.setOnClickListener(this);
-        mapBtn = findViewById(R.id.map_btn);
-        mapBtn.setOnClickListener(this);
-        schedulerBtn = findViewById(R.id.scheduler_btn);
-        schedulerBtn.setOnClickListener(this);
-        retrofitBtn = findViewById(R.id.retrofit_btn);
-        retrofitBtn.setOnClickListener(this);
-        actionBtn = findViewById(R.id.test_action);
-        actionBtn.setOnClickListener(this);
+        findViewById(R.id.simple_btn).setOnClickListener(this);
+        findViewById(R.id.map_btn).setOnClickListener(this);
+        findViewById(R.id.scheduler_btn).setOnClickListener(this);
+        findViewById(R.id.retrofit_btn).setOnClickListener(this);
+        findViewById(R.id.test_action).setOnClickListener(this);
     }
 
     @Override
