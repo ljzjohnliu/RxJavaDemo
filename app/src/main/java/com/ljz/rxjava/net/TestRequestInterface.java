@@ -7,6 +7,7 @@ import com.ljz.rxjava.net.model.WeatherInfoData;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import rx.Observable;
 
 public interface TestRequestInterface {
 
@@ -45,5 +46,8 @@ public interface TestRequestInterface {
     // getCall() = 接收网络请求数据的方法
     // 其中返回类型为Call<*>，*是接收数据的类（即上面定义的Translation类）
     // 如果想直接获得Responsebody中的内容，可以定义网络请求返回值为Call<ResponseBody>
+
+    @GET("data/cityinfo/101020100.html")
+    Observable<JsonObject> getWeaterUseRxjavaAsJson();
 
 }

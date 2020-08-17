@@ -24,6 +24,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class RetrofitActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +47,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.test_retrofit3).setOnClickListener(this);
         findViewById(R.id.test_retrofit4).setOnClickListener(this);
         findViewById(R.id.test_retrofit5).setOnClickListener(this);
+        findViewById(R.id.test_retrofit6).setOnClickListener(this);
     }
 
     @Override
@@ -50,19 +55,22 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
         int id = v.getId();
         switch (id) {
             case R.id.test_retrofit1:
-                getWeaterSyncRequest();
+                getWeatherSyncRequest();
                 break;
             case R.id.test_retrofit2:
-                getWeaterAsyncRequest();
+                getWeatherAsyncRequest();
                 break;
             case R.id.test_retrofit3:
-                getWeaterAsyncRequest2();
+                getWeatherAsyncRequest2();
                 break;
             case R.id.test_retrofit4:
-                getWeaterAsResponse();
+                getWeatherAsResponse();
                 break;
             case R.id.test_retrofit5:
-                getWeaterAsString();
+                getWeatherAsString();
+                break;
+            case R.id.test_retrofit6:
+                getWeatherUseRxJavaAsJson();
                 break;
             default:
                 break;
@@ -72,7 +80,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
     /**
      * 同步网络请求获取天气信息
      */
-    private void getWeaterSyncRequest() {
+    private void getWeatherSyncRequest() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -104,7 +112,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
     /**
      * 异步网络请求获取天气信息
      */
-    private void getWeaterAsyncRequest() {
+    private void getWeatherAsyncRequest() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.weather.com.cn/") //设置网络请求的Url地址
                 .addConverterFactory(GsonConverterFactory.create()) //设置数据解析器
@@ -139,7 +147,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
     /**
      * 异步网络请求获取天气信息
      */
-    private void getWeaterAsyncRequest2() {
+    private void getWeatherAsyncRequest2() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.weather.com.cn/") //设置网络请求的Url地址
                 .addConverterFactory(GsonConverterFactory.create()) //设置数据解析器
@@ -170,7 +178,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void getWeaterAsResponse() {
+    private void getWeatherAsResponse() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.weather.com.cn/") //设置网络请求的Url地址
                 .addConverterFactory(GsonConverterFactory.create()) //设置数据解析器
@@ -201,7 +209,7 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private void getWeaterAsString() {
+    private void getWeatherAsString() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.weather.com.cn/") //设置网络请求的Url地址
                 .addConverterFactory(GsonConverterFactory.create()) //设置数据解析器
@@ -230,6 +238,29 @@ public class RetrofitActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 Log.d(TAG, "getWeaterAsString, onFailure: 连接失败 : " + throwable.getMessage());
+            }
+        });
+    }
+
+    private void getWeatherUseRxJavaAsJson() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://www.weather.com.cn/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        TestRequestInterface requestInterface = retrofit.create(TestRequestInterface.class);
+
+        Observable observable = requestInterface.getWeaterUseRxjavaAsJson();
+
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1() {
+            @Override
+            public void call(Object o) {
+                Log.d(TAG, "getWeatherUseRxJavaAsJson, call: o = " + o);
+                Log.d(TAG, "getWeatherUseRxJavaAsJson, call: o.toString = " + o.toString());
+                WeatherInfoData weatherInfoData = mGson.fromJson(o.toString(), WeatherInfoData.class);
+                weatherInfoData.show();
+                ToastUtil.toast(RetrofitActivity.this, weatherInfoData.toString());
             }
         });
     }
