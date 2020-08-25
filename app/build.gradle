@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+//添加静态代码检查
+apply from: '../config/quality.gradle'
 
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
