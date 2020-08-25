@@ -2,7 +2,8 @@ package com.ljz.rxjava.data;
 
 public class Course {
 
-    private String name;//课程名
+    //课程名
+    private String name;
     private String id;
 
     public Course(String name, String id) {

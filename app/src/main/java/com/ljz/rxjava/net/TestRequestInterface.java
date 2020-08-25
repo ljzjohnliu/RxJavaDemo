@@ -13,6 +13,7 @@ public interface TestRequestInterface {
 
     /**
      * 获取天气信息
+     *
      * @return 请求结果以 ResponseBody 形式返回
      */
     @GET("data/cityinfo/101020100.html")
@@ -20,6 +21,7 @@ public interface TestRequestInterface {
 
     /**
      * 获取天气信息
+     *
      * @return 请求结果以 String 形式返回
      */
     @GET("data/cityinfo/101020100.html")
@@ -27,6 +29,7 @@ public interface TestRequestInterface {
 
     /**
      * 获取天气信息
+     *
      * @return 请求结果以 Json 形式返回
      */
     @GET("data/cityinfo/101020100.html")
@@ -34,13 +37,14 @@ public interface TestRequestInterface {
 
     /**
      * 获取天气信息
+     *
      * @return 请求结果以 WeatherInfoData 形式返回
      */
     @GET("data/cityinfo/101020100.html")
     Call<WeatherInfoData> getWeaterInfo();
 
     @GET("openapi.do?keyfrom=Yanzhikai&key=2032414398&type=data&doctype=json&version=1.1&q=car")
-    Call<ResultData>  getCall();
+    Call<ResultData> getCall();
     // @GET注解的作用:采用Get方法发送网络请求
 
     // getCall() = 接收网络请求数据的方法

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -89,7 +88,6 @@ public class SchedulerActivity extends AppCompatActivity implements View.OnClick
      * 若将observeOn(AndroidSchedulers.mainThread())去掉会怎么样？不为消费事件show(s)指定线程后，show(s)会在那里执行？
      * 其实，observeOn() 指定的是它之后的操作所在的线程。也就是说，map的处理和最后的消费事件Action1@call都会在io线程中执行。
      * observeOn()可以多次使用，可以随意变换线程
-     *
      */
     private void testRxScheduler2() {
         Observable.just("Hello"/*, "World"*/)

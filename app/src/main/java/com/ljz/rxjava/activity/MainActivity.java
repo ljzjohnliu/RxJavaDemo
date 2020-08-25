@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent();
         switch (id) {
             case R.id.simple_btn:
-                intent.setClassName("com.ljz.rxjava","com.ljz.rxjava.activity.TestRxSimpleActivity");
+                intent.setClassName("com.ljz.rxjava", "com.ljz.rxjava.activity.TestRxSimpleActivity");
                 break;
             case R.id.map_btn:
-                intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.activity.TestRxMapActivity"));
+                intent.setComponent(new ComponentName("com.ljz.rxjava", "com.ljz.rxjava.activity.TestRxMapActivity"));
                 break;
             case R.id.scheduler_btn:
-                intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.activity.SchedulerActivity"));
+                intent.setComponent(new ComponentName("com.ljz.rxjava", "com.ljz.rxjava.activity.SchedulerActivity"));
                 break;
             case R.id.retrofit_btn:
-                intent.setComponent(new ComponentName("com.ljz.rxjava","com.ljz.rxjava.activity.RetrofitActivity"));
+                intent.setComponent(new ComponentName("com.ljz.rxjava", "com.ljz.rxjava.activity.RetrofitActivity"));
                 break;
 //            case R.id.test_action:
 //                break;

@@ -72,9 +72,9 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
                 .map(new Func1<Student, String>() {
                     @Override
                     public String call(Student i) {
-                        String name = i.getName();//获取Student对象中的name
+                        String name = i.getName(); //获取Student对象中的name
                         Log.d(TAG, "testRxMap1, Func1 call: name = " + name);
-                        return name;//返回name
+                        return name; //返回name
                     }
                 })
                 .subscribe(new Action1<String>() {
@@ -89,13 +89,13 @@ public class TestRxMapActivity extends AppCompatActivity implements View.OnClick
     private void testRxMap2() {
         //多次使用map，想用几个用几个
         Observable.just("Hello", "World")
-                .map(new Func1<String, Integer>() {//将String类型的转化为Integer类型的哈希码
+                .map(new Func1<String, Integer>() { //将String类型的转化为Integer类型的哈希码
                     @Override
                     public Integer call(String s) {
                         return s.hashCode();
                     }
                 })
-                .map(new Func1<Integer, String>() {//将转化后得到的Integer类型的哈希码再转化为String类型
+                .map(new Func1<Integer, String>() { //将转化后得到的Integer类型的哈希码再转化为String类型
                     @Override
                     public String call(Integer integer) {
                         return integer.intValue() + "";

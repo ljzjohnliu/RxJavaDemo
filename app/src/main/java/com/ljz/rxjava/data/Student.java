@@ -4,9 +4,12 @@ import java.util.List;
 
 public class Student {
 
-    private String name;//姓名
-    private int number;//学号
-    private List<Course> coursesList;//所修的课程
+    //姓名
+    private String name;
+    //学号
+    private int number;
+    //所修的课程
+    private List<Course> coursesList;
 
     public Student(String name, int number) {
         this.name = name;
