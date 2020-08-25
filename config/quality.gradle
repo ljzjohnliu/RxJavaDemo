@@ -65,7 +65,8 @@ task findbugs(type: FindBugs, group: 'verification') {
     description 'Run findbugs'
     //检测二进制文件路径
 //    classes = files("${project.rootDir}/${project.getName()}/build/intermediates/classes")
-    classes = files("${project.buildDir}/intermediates/classes")
+//    classes = files("${project.buildDir}/intermediates/classes")
+    classes = files("${project.projectDir}/build/intermediates/javac")
 //    source 'src'
     source = fileTree('src/main/java/')
     //匹配检测的文件名
@@ -73,8 +74,8 @@ task findbugs(type: FindBugs, group: 'verification') {
     exclude '**/gen/**'
     classpath = files()
     reports {
-        xml.enabled = true
-        html.enabled = false
+        xml.enabled = false
+        html.enabled = true
         //配置检查报告输出路径
         xml {
              file("${project.rootDir}/${project.getName()}/build/reports/findbugs/findbugs.xml")
